@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebApplication4MVC.Models.ProfileModel>
+
+@{
+    ViewData["Title"] = "View Profiles";
+}
+
+<h1>@ViewData["Title"]</h1>
+<a asp-action="Create" asp-controller="Profile">Create Profile</a>
+<table style="table table-borded">
+
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Age
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Age
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
+    <tbody>
+
+        @foreach(ProfileModel profile in Model) {
+        
+            <tr>
+                <td>@profile.Id</td>
+                <td>@profile.Name</td>
+                <td>@profile.Age</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Profile" asp-route-id="@profile.Id">Edit Profile</a>
+                    </td>
+            </tr>
+        
+        }
+
+    </tbody>
+
+</table>
