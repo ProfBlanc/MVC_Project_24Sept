@@ -5,7 +5,11 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<partial name="_SplashMessage" />
+
 <a asp-action="Create" asp-controller="Profile">Create Profile</a>
+
 <table style="table table-borded">
 
     <thead>
@@ -45,7 +49,11 @@
                 <td>@profile.Name</td>
                 <td>@profile.Age</td>
                 <td>
+                    <a asp-action="View" asp-controller="Profile" asp-route-id="@profile.Id">View Profile</a>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a asp-action="Edit" asp-controller="Profile" asp-route-id="@profile.Id">Edit Profile</a>
+
                     </td>
             </tr>
         

@@ -31,18 +31,43 @@ namespace WebApplication4MVC.Controllers
         }
         public IActionResult Edit(int id)
         {
-            return View();
+            ProfileModel result = Profiles.Where(p => p.Id == id).First();
+
+            if (result == null)
+                RedirectToAction("Error", "Home");
+
+
+            return View(result);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Submit(ProfileModel model)
         {
-            return RedirectToAction("Index");  //redirects to a method
+            if (!ModelState.IsValid) {
+                return View("Create",model);
+            }
+
+            Profiles.Add(new ProfileModel
+            {
+                Id=model.Id,
+                Name=model.Name,
+                Age= model.Age
+
+            });
+
+            return View("Index", Profiles);
+
+            //return RedirectToAction("Index");  //redirects to a method
         }
-        public IActionResult View()
+        public IActionResult View(int id)
         {
-            return View();
+            ProfileModel result = Profiles.Where(p => p.Id == id).FirstOrDefault();
+
+            if (result == null)
+                RedirectToAction("Error", "Home");
+
+            return View(result);
         }
 
 

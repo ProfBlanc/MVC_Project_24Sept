@@ -11,12 +11,7 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-@if (TempData["Message"] != null){
-    <div>
-        @TempData["Message"]
-    </div>
-}
-
+<partial name="~/Views/Shared/_SplashMessage.cshtml" />
 <form asp-action="Index" asp-controller="Contact" method="post">
 
     <div asp-validation-summary="ModelOnly"></div>
